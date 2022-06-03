@@ -2,6 +2,7 @@
 import React from 'react';
 import style from './index.module.scss';
 import { maintype } from './type';
+import 默认状态栏 from './默认状态栏';
 
 const 操作:React.FC<{name:string,click:()=>void}> = ({name,click}) => {
     return (
@@ -23,26 +24,8 @@ const 状态:React.FC<{name:any,main:maintype}> = ({name,main}) => {
         </div>
     )
 }
-const 默认状态栏 = [
-    {
-        name:'访达',
-        main:[
-            {name:"关于访达",click:()=>console.log('访达')},
-            {name:"偏好设置",click:()=>console.log('偏好设置')},
-            {name:"文件操作",click:()=>console.log('文件操作')},
-            {name:"新建窗口",click:()=>console.log('新建窗口')},
-            {name:"拷贝",click:()=>console.log('拷贝')}
-        ]
-    },
-    {
-        name:'帮助',
-        main:[
-            {name:"macos帮助",click:()=>console.log('macos帮助')},
-            {name:"查看新功能",click:()=>console.log('查看新功能')},
-            {name:"了解基础知识",click:()=>console.log('了解基础知识')},
-        ]
-    }
-]
+
+
 
 const 状态栏 = () => {
     return (
