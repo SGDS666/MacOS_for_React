@@ -1,0 +1,1 @@
+export type maintype = {name:string,click:()=>void}[]
