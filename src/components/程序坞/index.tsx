@@ -3,10 +3,26 @@ import React, {  useEffect, useRef, useState } from 'react';
 import style from './index.module.scss';
 import { 默认程序 } from './程序配置';
 
-const 程序:React.FC<{name?:any,icon:string}> = ({name,icon}) => {
+const 程序:React.FC<{name?:any,icon:string,date?:boolean,time?:boolean}> = ({name,icon,date,time}) => {
+
+    useEffect(()=>{
+        let timeupdate:NodeJS.Timeout 
+        if(time){
+            const timebox:any = document.querySelector<HTMLDivElement>(`.${style.time}`)
+            timeupdate =  setInterval(()=>{
+                timebox.innerHTML = `${new Date().getHours()}:${new Date().getMinutes()} `
+            },1000)
+        }
+        return () =>{
+            clearInterval(timeupdate)
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
     return (
         <div className={style.app}>
             <div className={style.icon}>
+                {date?<div className={style.date}>{new Date().getDate()}</div>:null}
+                {time?<div className={style.time}></div>:null}
                 <img src={icon} alt={""} />
                 <div className={style.tip}>{name}</div>
             </div>
@@ -20,20 +36,26 @@ const 程序坞 = () => {
     useEffect(()=>{
         const dock:HTMLDivElement = dockref.current
         const applist:any = dock.querySelectorAll(`.${style.app}`) 
-        const dockleft = dock.offsetLeft
-        
+       
+        const clearStyle = (app:HTMLDivElement) => {
+            app.style.top = ''
+            app.style.width = ''
+            app.style.height = ''
+        }
         dock.onmouseenter = (e) => {
             console.log('进入');
             applist.forEach((app:HTMLDivElement) => {
                 setTimeout(() => {
                     app.style.transition = 'all 0s '
-                }, 300);
+                }, 800);
             })
             
         }
-
+        
         dock.onmousemove = e => {
+            const dockleft = dock.offsetLeft
             const mousex = e.clientX - dockleft
+            
             applist.forEach((app:HTMLDivElement) => { 
                 
                 const appcenter = app.offsetLeft + app.offsetWidth / 2
@@ -43,27 +65,22 @@ const 程序坞 = () => {
                     // 尺寸 = 基础50 + 100/除以距离  越小越大
                     const size = 50 + 120 - appgap/1.3
                     const top = 100 - appgap/1.4
-
                     if(size>=50){
                         app.style.width = `${size}px`
                         app.style.height = `${size}px`
+                    }else{
+                        app.style.width = ''
+                        app.style.height = ''
                     }
-                    // app.style.left = `${left}px`
-                    // if(scale>1){
-                    //     app.style.transform = `scale(${size*0.018})`
-                    // }
                     if(top>=0){
                         app.style.top = `${-top}px`
                         
+                    }else{
+                        app.style.top = ''
                     }
                     
                 }else{
-                    app.style.width = ''
-                    app.style.height = ''
-                    app.style.top = ''
-                    app.style.margin = ``
-                    app.style.transform = ''
-                    app.style.left = ''
+                    clearStyle(app)
                 }
                 
             })
@@ -72,16 +89,9 @@ const 程序坞 = () => {
         
         dock.onmouseleave = e => {
             applist.forEach((app:HTMLDivElement)=>{
-                    app.style.top = ''
-                    app.style.width = ''
-                    app.style.height = ''
-                    setTimeout(() => {
-                        app.style.transition = ' '
-                    }, 300);
-                    app.style.margin = ``
-                    // app.style.transform = ''
-                    
-                    
+                    clearStyle(app) 
+                    app.style.transition = ' '
+                                    
             })
         }
     },[apps])
@@ -94,6 +104,8 @@ const 程序坞 = () => {
                     key={`applink${index}`} 
                     name={app.name} 
                     icon={app.icon}
+                    date={app.date}
+                    time={app.time}
                     />
                 ))}
             </div>

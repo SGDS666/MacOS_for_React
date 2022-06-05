@@ -1,0 +1,51 @@
+const addmove = (touchdiv:HTMLElement,movediv:HTMLElement) => {
+        console.log(touchdiv,"组件触摸事件注册完成");
+        let startx:number 
+        let starty:number 
+        let innerx:number 
+        let innery:number 
+        let moveable = false
+        const start = (e:MouseEvent) => {
+                movediv.style.transition = 'all 0s'
+                movediv.style.zIndex = '1000'
+                moveable = true
+                startx = e.pageX
+                starty = e.pageY
+                innerx = startx -  movediv.offsetLeft
+                innery = starty - movediv.offsetTop
+                e.stopPropagation()
+                touchdiv.onmousemove = move
+        }
+        const move = (e:MouseEvent) => {
+                if(moveable){
+                        const movex = e.pageX
+                        const movey = e.pageY
+                        // 获取移动点在盒子内的位置
+                        const inx = movex - movediv.offsetLeft
+                        const iny = movey - movediv.offsetTop
+                        //计算盒子需要移动到的点位
+                        const movingx = inx - innerx
+                        const movingy = iny - innery
+                        //让盒子跟随移动
+                        movediv.style.left =`${movediv.offsetLeft + movingx}px` 
+                        movediv.style.top =`${movediv.offsetTop + movingy}px` 
+                }
+                
+                e.stopPropagation()
+                e.preventDefault()
+                return false
+
+        }
+        const end = (e:MouseEvent) => {
+                touchdiv.onmousemove = null
+                moveable = false
+                movediv.style.transition = ''
+        }
+        
+        touchdiv.onmousedown = start
+        touchdiv.onmouseleave = end
+        touchdiv.onmouseout = end
+        touchdiv.onmouseup = end
+}
+
+export default addmove
