@@ -1,4 +1,7 @@
+
+let level = 0
 const addmove = (touchdiv:HTMLElement,movediv:HTMLElement) => {
+        level++
         console.log(touchdiv,"组件触摸事件注册完成");
         let startx:number 
         let starty:number 
@@ -7,7 +10,7 @@ const addmove = (touchdiv:HTMLElement,movediv:HTMLElement) => {
         let moveable = false
         const start = (e:MouseEvent) => {
                 movediv.style.transition = 'all 0s'
-                movediv.style.zIndex = '1000'
+                movediv.style.zIndex = `${level}`
                 moveable = true
                 startx = e.pageX
                 starty = e.pageY
@@ -40,6 +43,7 @@ const addmove = (touchdiv:HTMLElement,movediv:HTMLElement) => {
                 touchdiv.onmousemove = null
                 moveable = false
                 movediv.style.transition = ''
+                // movediv.style.zIndex = ''
         }
         
         touchdiv.onmousedown = start

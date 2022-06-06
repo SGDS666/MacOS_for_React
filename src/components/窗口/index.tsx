@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import addTouch from '../../Tools/触摸事件注册';
 import style from './index.module.scss';
 
-const 窗口 = () => {
+const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
     const titleref: any = useRef(Math.random())
     const boxref: any = useRef(Math.random())
     const [ismax, setmax] = useState(false)
@@ -79,7 +79,7 @@ const 窗口 = () => {
                 {
                 ismin ? 
                 null :
-                <div className={style.contrl}>
+                <div className={style.control}>
                     <div className={style.closd}><span>x</span></div>
                     <div 
                     className={style.min} 
@@ -97,8 +97,8 @@ const 窗口 = () => {
                 }
 
             </div>
-            <div className={style.body}>
-
+            <div className={style.body} style={ismin?{display:'none',width:"50px",height:"50px"}:{}}>
+                {children}
             </div>
         </div>
     )
