@@ -39,6 +39,7 @@ const 窗口:React.FC<{children:ReactNode,app:apptype,left:number,top:number}> =
             box.style.top = '20px'
             box.style.zIndex = "10000"
             setmax(true)
+            
         }
     }, [ismax, post])
 
