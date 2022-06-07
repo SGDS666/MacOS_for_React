@@ -27,12 +27,12 @@
         justify-content: space-around;
         align-items: center;
         .app{
-            min-width: 50px;
-            min-height: 50px ;
-            max-width: 100px;
-            max-height: 100px;
-            width: 50px;
-            height: 50px;
+            min-width: 60px;
+            min-height: 60px ;
+            max-width: 120px;
+            max-height: 120px;
+            width: 60px;
+            height: 60px;
             top: 0;
             position: relative;
             flex-shrink: 0;
@@ -43,14 +43,19 @@
             color: rgb(255, 255, 255);
             transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
             // overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             
             .icon{
-                width: 100%;
-                height: 100%;
+                flex-shrink: 0;
+                width: 80%;
+                height: 80%;
                 border-radius: 20%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                overflow: hidden;
                 .date{
                     position: absolute;
                     width: 100%;
@@ -77,47 +82,48 @@
                     
                 }
                 img{
-                    width: 100%;
-                    height: 100%;
+                    width: 125%;
+                    height: 125%;
                     border-radius: 20%;
                 }
                 
-                &:hover{
-                    .tip{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        top: -35%;
-                        min-width: 50%;
-                        height: 25px;
-                        padding: 0 5px;
-                        background-color: rgba(4, 4, 4, 0.302);
-                        color: white;
-                        font-size: 15px;
-                        font-weight: 500;
-                        border-radius: 5px;
-                        
-                        // border: 1px solid black;
-                        &::before{
-                            content: '';
-                            border: 10px solid transparent;
-                            // border-top: 20PX solid rgb(234, 12, 12);
-                            border-top:10PX solid rgba(4, 4, 4, 0.302);
-                            position: relative;
-                            top: 25px;
-                            // bo
-                            // border-left: none;
-                            // border-bottom-left-radius: 30%;
-                            // border-bottom-right-radius: 30%;
-                            // background-color: red;
-                            position: absolute;
-
-                        }
-                    }
-                }
+                
                 .tip{
                     display: none;
                     position: absolute;
+                }
+            }
+            &:hover{
+                .icon .tip{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    top: -35%;
+                    min-width: 50%;
+                    height: 25px;
+                    padding: 0 5px;
+                    background-color: rgba(4, 4, 4, 0.302);
+                    color: white;
+                    font-size: 15px;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    
+                    // border: 1px solid black;
+                    &::before{
+                        content: '';
+                        border: 10px solid transparent;
+                        // border-top: 20PX solid rgb(234, 12, 12);
+                        border-top:10PX solid rgba(4, 4, 4, 0.302);
+                        position: relative;
+                        top: 25px;
+                        // bo
+                        // border-left: none;
+                        // border-bottom-left-radius: 30%;
+                        // border-bottom-right-radius: 30%;
+                        // background-color: red;
+                        position: absolute;
+
+                    }
                 }
             }
             

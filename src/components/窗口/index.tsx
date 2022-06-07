@@ -1,13 +1,17 @@
 import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { useRemoveWindow } from '../../hooks/usewindow';
 import addTouch from '../../Tools/触摸事件注册';
+import { apptype } from '../程序坞/程序配置';
 import style from './index.module.scss';
 
-const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
+const 窗口:React.FC<{children:ReactNode,app:apptype,left:string,top:string}> = ({children,app,top,left}) => {
     const titleref: any = useRef(Math.random())
     const boxref: any = useRef(Math.random())
     const [ismax, setmax] = useState(false)
     const [ismin, setmin] = useState(false)
     const [post, setpost] = useState(["", " "])
+    
+    const remove窗口 = useRemoveWindow()
 
     useEffect(() => {
         const title: HTMLDivElement = titleref.current
@@ -26,6 +30,7 @@ const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
             box.style.top = post[1]
             setpost(['', ''])
             setmax(false)
+            
         } else {
             setpost([box.style.left, box.style.top])
             box.style.width = '100vw'
@@ -33,7 +38,6 @@ const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
             box.style.left = '0px'
             box.style.top = '30px'
             setmax(true)
-
         }
     }, [ismax, post])
 
@@ -48,21 +52,20 @@ const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
             box.style.top = post[1]
             // box.style.bottom = ''
             setmin(false)
-
         } else {
             setpost([box.style.left, box.style.top])
             box.style.width = '50px'
             box.style.height = '50px'
             box.style.borderRadius = '20%'
-            box.style.left = '300px'
-            box.style.top = '90vh'
+            box.style.left = left
+            box.style.top = top
             // box.style.bottom = '40px'
             setmin(true)
             setmax(false)
         }
 
 
-    }, [ismin, post])
+    }, [ismin, left, post, top])
 
     return (
         <div 
@@ -80,7 +83,7 @@ const 窗口:React.FC<{children:ReactNode}> = ({children}) => {
                 ismin ? 
                 null :
                 <div className={style.control}>
-                    <div className={style.closd}><span>x</span></div>
+                    <div className={style.closd}><span onClick={()=>{remove窗口(app)}}>x</span></div>
                     <div 
                     className={style.min} 
                     style={ismax ? { background: "gray" } : {}} 
