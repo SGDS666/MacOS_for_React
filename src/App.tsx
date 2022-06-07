@@ -26,18 +26,21 @@ function App() {
       {状态显示 ? <状态栏 /> : null}
       {
         acticeWindow.map((w:apptype) => {
-          if(w.type === 'web' && w.src){
+          if(w.left&&w.top){
+            if(w.type === 'web' && w.src){
+              return (
+                <窗口 key={w.name} app={w} left={w.left} top={w.top} >
+                  <WebContent src={w?.src} title={w.name} />
+                </窗口>
+              )
+            }
             return (
-              <窗口 app={w} left={"1"} top={"2"}>
-                <WebContent src={w?.src} title={w.name} />
+              <窗口 key={w.name} app={w} left={w.left} top={w.top}>
+  
               </窗口>
             )
           }
-          return (
-            <窗口 app={w} left={"1"} top={"2"}>
-
-            </窗口>
-          )
+          return null
           
         })
       }

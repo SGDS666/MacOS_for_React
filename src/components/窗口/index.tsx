@@ -4,7 +4,7 @@ import addTouch from '../../Tools/触摸事件注册';
 import { apptype } from '../程序坞/程序配置';
 import style from './index.module.scss';
 
-const 窗口:React.FC<{children:ReactNode,app:apptype,left:string,top:string}> = ({children,app,top,left}) => {
+const 窗口:React.FC<{children:ReactNode,app:apptype,left:number,top:number}> = ({children,app,top,left}) => {
     const titleref: any = useRef(Math.random())
     const boxref: any = useRef(Math.random())
     const [ismax, setmax] = useState(false)
@@ -30,13 +30,14 @@ const 窗口:React.FC<{children:ReactNode,app:apptype,left:string,top:string}> =
             box.style.top = post[1]
             setpost(['', ''])
             setmax(false)
-            
+            box.style.zIndex = ""
         } else {
             setpost([box.style.left, box.style.top])
             box.style.width = '100vw'
             box.style.height = '100vh'
             box.style.left = '0px'
-            box.style.top = '30px'
+            box.style.top = '20px'
+            box.style.zIndex = "10000"
             setmax(true)
         }
     }, [ismax, post])
@@ -50,18 +51,26 @@ const 窗口:React.FC<{children:ReactNode,app:apptype,left:string,top:string}> =
             box.style.borderRadius = ''
             box.style.left = post[0]
             box.style.top = post[1]
+            box.style.zIndex = ''
             // box.style.bottom = ''
             setmin(false)
         } else {
             setpost([box.style.left, box.style.top])
-            box.style.width = '50px'
-            box.style.height = '50px'
+            box.style.zIndex = "0"
+            box.style.width = '0px'
+            box.style.height = '0px'
             box.style.borderRadius = '20%'
-            box.style.left = left
-            box.style.top = top
+            box.style.left = `${left}px`
+            box.style.top = `${top+50}px`
+            box.style.backgroundColor = "transparent"
+            
             // box.style.bottom = '40px'
             setmin(true)
             setmax(false)
+            setTimeout(()=>{
+                box.style.display ="none"
+            },1000)
+            
         }
 
 

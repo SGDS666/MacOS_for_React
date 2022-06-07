@@ -1,13 +1,16 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRecoilState, } from 'recoil';
 import { useActiveWidow } from '../../hooks/usewindow';
+import { appsState } from '../../store';
 import style from './index.module.scss';
 import { apptype, 默认程序 } from './程序配置';
 
-const 程序: React.FC<apptype> = ({ name, icon, date, time, src, type, click, mouseleft }) => {
+const 程序: React.FC<apptype> = ({ name, icon, date, time, self,click, mouseleft }) => {
     // const [apptop, setapptop] = useState(0)
     // const [appsize, setappsize] = useState(60)
     const [appcenter, setappcenter] = useState(0)
+    const [apps,setAppState] = useRecoilState(appsState)
     const appref: any = useRef(name)
     const [size, top] = useMemo<[number, number]>(() => {
         let ressize = 60
@@ -41,9 +44,25 @@ const 程序: React.FC<apptype> = ({ name, icon, date, time, src, type, click, m
         }
         return [ressize, restop]
     }, [appcenter, mouseleft])
+
     useEffect(() => {
         const appdiv: HTMLDivElement = appref.current
         setappcenter(appdiv.offsetLeft + appdiv.offsetWidth / 2)
+        if(self){
+            const [app,index] = self
+            const divleft = appdiv.offsetLeft
+            const divtop = appdiv.offsetTop
+            // console.dir(appdiv);
+            
+            if(!app.left && !app.top){
+                const newapps = [...apps]
+                newapps[index] = {...app,left:divleft,top:divtop}
+                setAppState(newapps)
+            }
+            
+
+        }
+
         let timeupdate: NodeJS.Timeout
 
         if (time) {
@@ -56,7 +75,7 @@ const 程序: React.FC<apptype> = ({ name, icon, date, time, src, type, click, m
             clearInterval(timeupdate)
         }
 
-    }, [mouseleft, time])
+    }, [apps, mouseleft, self, setAppState, time])
 
 
 
@@ -80,72 +99,34 @@ const 程序: React.FC<apptype> = ({ name, icon, date, time, src, type, click, m
 const 程序坞: React.FC<{}> = () => {
 
     const dockref: any = useRef()
-    const [apps,] = useState(默认程序)
+    const [apps,] = useRecoilState(appsState)
     const [mouseleft, setmouseleft] = useState(0)
     const [active, setactive] = useActiveWidow()
     const openApp = useCallback((app: apptype) => {
 
         //窗口未打开,
-
+        
         //窗口已打开,
-        return () => {
-
+        return (e:MouseEvent) => {
+            console.log(e);
+            const left = e.pageX
+            const top = e.pageY
+            setactive([{...app,left:left,top:top},...active])
+            
+            
         }
-    }, [])
+    }, [active, setactive])
     useEffect(() => {
         const dock: HTMLDivElement = dockref.current
-
         dock.onmouseenter = (e) => {
-            // const dockleft = dock.offsetLeft
-            // const mousex = e.clientX - dockleft
-            // setmouseleft(mousex)
-            console.log('进入');
-
-
         }
-
         dock.onmousemove = e => {
             const dockleft = dock.offsetLeft
             const mousex = e.clientX - dockleft
             setmouseleft(mousex)
-            // applist.forEach((app: HTMLDivElement) => {
-
-            //     const appcenter = app.offsetLeft + app.offsetWidth / 2
-            //     const appgap = Math.abs(mousex - appcenter)
-            //     // app.innerHTML = `gap:${appgap} size:${50 + 100 - appgap} top:${120 - appgap}`
-            //     if (appgap < 300) {
-            //         // 尺寸 = 基础50 + 100/除以距离  越小越大
-            //         const size = 50 + 120 - appgap / 1.3
-            //         const top = 100 - appgap / 1.4
-            //         if (size >= 50) {
-            //             app.style.width = `${size}px`
-            //             app.style.height = `${size}px`
-            //         } else {
-            //             app.style.width = ''
-            //             app.style.height = ''
-            //         }
-            //         if (top >= 0) {
-            //             app.style.top = `${-top}px`
-
-            //         } else {
-            //             app.style.top = ''
-            //         }
-
-            //     } else {
-            //         clearStyle(app)
-            //     }
-
-            // })
-
         }
-
         dock.onmouseleave = e => {
             setmouseleft(0)
-            // applist.forEach((app: HTMLDivElement) => {
-            //     clearStyle(app)
-            //     app.style.transition = ' '
-
-            // })
         }
     }, [apps])
     return (
@@ -156,6 +137,7 @@ const 程序坞: React.FC<{}> = () => {
 
                     return (
                         <程序
+                            self={[app,index]}
                             mouseleft={mouseleft}
                             key={app.name}
                             click={openApp(app)}

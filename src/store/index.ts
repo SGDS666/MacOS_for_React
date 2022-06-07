@@ -1,5 +1,5 @@
 import { atom,  } from "recoil";
-import { applist, } from "../components/程序坞/程序配置";
+import { applist, 默认程序, } from "../components/程序坞/程序配置";
 
 export const 状态栏显示 = atom({
     key:"状态栏显示",
@@ -9,4 +9,9 @@ export const 状态栏显示 = atom({
 export const 窗口内容 = atom<applist>({
     key:"窗口管理",
     default:[]
+})
+
+export const appsState = atom<applist>({
+    key:"applist",
+    default:默认程序
 })

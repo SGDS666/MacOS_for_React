@@ -9,14 +9,17 @@
     left: 300px;
     top: 200px;
     // transition: left top 0s;
-    // transition: top 0s;
-    
+    transition: all 0.5s;
+    &:active{
+        z-index: 10000;
+    }
     .title{
         display: flex;
         align-items: center;
         justify-content: flex-start;
         height: 40px;
         width: 100%;
+        background-color: white;
         // background-color: black;
         border-radius: 10px;
         // background-color: red;

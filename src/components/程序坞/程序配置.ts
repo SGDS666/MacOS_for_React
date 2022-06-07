@@ -22,10 +22,13 @@ export type apptype = {
     src?:string,
     date?:boolean,
     time?:boolean,
-    click?:()=>any
+    click?:any
     windowsize?:"default"|"min"|"max",
     Element?:HTMLDivElement
     mouseleft?:number
+    left?:number
+    top?:number
+    self?:[apptype,number]
 }
 
 export type applist = apptype[]
@@ -56,22 +59,22 @@ export type applist = apptype[]
 //     }
 // }
 export const 默认程序:applist = [
-    { name: "访达", icon: 访达icon, type: "system",},
-    { name: "设置", icon: 设置icon, type: "system", },
-    { name: "启动台", icon: 启动台icon, type: "system", },
-    { name: "Safari 浏览器", icon: safarlicon, type: "system",},
-    { name: "App Store", icon: AppStoreIcon, type: "web", src: "https://macwk.com/soft/all/p1" },
-    { name: "地图", icon: 地图icon, type: "web" ,},
-    { name: "活动监视器", icon: 活动监视器, type: "system" ,},
-    { name: "终端", icon: 终端icon, type: "system" ,},
-    { name: "照片", icon: 照片icon, type: "system" ,},
-    { name: "提醒", icon: 提醒icon, type: "system" ,},
-    { name: "日历", icon: 日历icon, date: true, type: "system" ,},
-    { name: "时钟", icon: 时钟icon, time: true, type: "system" ,},
-    { name: "微信读书", icon: 微信读书icon, type: "web", src: "https://weread.qq.com/" ,},
-    { name: "赛车游戏", icon: 赛车游戏icon, type: "web", src: "http://hexgl.bkcore.com/play/" ,},
-    { name: "PhotoShop", icon: psicon, type: "web", src: "https://ps.gaoding.com/#/" ,},
-    { name: "PDF工具", icon: pdficon, type: "web", src: "https://www.pdfpai.com/" ,},
-    { name: "废纸篓", icon: 废纸篓icon, type: "system" ,},
+    { name: "访达", icon: 访达icon, type: "system",left:0,top:0},
+    { name: "设置", icon: 设置icon, type: "system", left:0,top:0},
+    { name: "启动台", icon: 启动台icon, type: "system", left:0,top:0},
+    { name: "Safari 浏览器", icon: safarlicon, type: "system",left:0,top:0},
+    { name: "App Store", icon: AppStoreIcon, type: "web", src: "https://macwk.com/soft/all/p1", left:0,top:0},
+    { name: "地图", icon: 地图icon, type: "web" ,left:0,top:0},
+    { name: "活动监视器", icon: 活动监视器, type: "system" ,left:0,top:0},
+    { name: "终端", icon: 终端icon, type: "system" ,left:0,top:0},
+    { name: "照片", icon: 照片icon, type: "system" ,left:0,top:0},
+    { name: "提醒", icon: 提醒icon, type: "system" ,left:0,top:0},
+    { name: "日历", icon: 日历icon, date: true, type: "system" ,left:0,top:0},
+    { name: "时钟", icon: 时钟icon, time: true, type: "system" ,left:0,top:0},
+    { name: "微信读书", icon: 微信读书icon, type: "web", src: "https://weread.qq.com/" ,left:0,top:0},
+    { name: "赛车游戏", icon: 赛车游戏icon, type: "web", src: "http://hexgl.bkcore.com/play/" ,left:0,top:0},
+    { name: "PhotoShop", icon: psicon, type: "web", src: "https://ps.gaoding.com/#/" ,left:0,top:0},
+    { name: "PDF工具", icon: pdficon, type: "web", src: "https://www.pdfpai.com/" ,left:0,top:0},
+    { name: "废纸篓", icon: 废纸篓icon, type: "system" ,left:0,top:0},
 
 ]
