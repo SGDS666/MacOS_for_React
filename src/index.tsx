@@ -8,6 +8,7 @@ import { RecoilRoot } from 'recoil';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+localStorage.removeItem('zindex')
 root.render(
   <RecoilRoot>
     <App />

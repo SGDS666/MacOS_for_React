@@ -7,10 +7,10 @@ import style from './index.module.scss';
 const 窗口:React.FC<{children:ReactNode,app:apptype,left:number,top:number}> = ({children,app,top,left}) => {
     const titleref: any = useRef(Math.random())
     const boxref: any = useRef(Math.random())
+    const [windowstate,setwindowstate] = useState<'defalut'|"min"|"max">("defalut")
     const [ismax, setmax] = useState(false)
     const [ismin, setmin] = useState(false)
     const [post, setpost] = useState(["", " "])
-    
     const remove窗口 = useRemoveWindow()
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const 窗口:React.FC<{children:ReactNode,app:apptype,left:number,top:number}> =
                     <div className={style.closd}><span onClick={()=>{remove窗口(app)}}>x</span></div>
                     <div 
                     className={style.min} 
-                    style={ismax ? { background: "gray" } : {}} 
+                    style={ismax ? { background: "rgb(214,214,214)" } : {}} 
                     >
                         {ismax ? null : <span onClick={min}>-</span>}
                     </div>

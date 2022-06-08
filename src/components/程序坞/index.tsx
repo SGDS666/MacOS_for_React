@@ -6,11 +6,11 @@ import { appsState } from '../../store';
 import style from './index.module.scss';
 import { apptype, 默认程序 } from './程序配置';
 
-const 程序: React.FC<apptype> = ({ name, icon, date, time, self,click, mouseleft }) => {
+const 程序: React.FC<apptype> = ({ name, icon, date, time, self, click, mouseleft }) => {
     // const [apptop, setapptop] = useState(0)
     // const [appsize, setappsize] = useState(60)
     const [appcenter, setappcenter] = useState(0)
-    const [apps,setAppState] = useRecoilState(appsState)
+    const [apps, setAppState] = useRecoilState(appsState)
     const appref: any = useRef(name)
     const [size, top] = useMemo<[number, number]>(() => {
         let ressize = 60
@@ -48,18 +48,18 @@ const 程序: React.FC<apptype> = ({ name, icon, date, time, self,click, mousele
     useEffect(() => {
         const appdiv: HTMLDivElement = appref.current
         setappcenter(appdiv.offsetLeft + appdiv.offsetWidth / 2)
-        if(self){
-            const [app,index] = self
+        if (self) {
+            const [app, index] = self
             const divleft = appdiv.offsetLeft
             const divtop = appdiv.offsetTop
             // console.dir(appdiv);
-            
-            if(!app.left && !app.top){
+
+            if (!app.left && !app.top) {
                 const newapps = [...apps]
-                newapps[index] = {...app,left:divleft,top:divtop}
+                newapps[index] = { ...app, left: divleft, top: divtop }
                 setAppState(newapps)
             }
-            
+
 
         }
 
@@ -102,20 +102,35 @@ const 程序坞: React.FC<{}> = () => {
     const [apps,] = useRecoilState(appsState)
     const [mouseleft, setmouseleft] = useState(0)
     const [active, setactive] = useActiveWidow()
-    const openApp = useCallback((app: apptype) => {
-
-        //窗口未打开,
+    const openApp = (app: apptype) => {
         
-        //窗口已打开,
-        return (e:MouseEvent) => {
-            console.log(e);
-            const left = e.pageX
-            const top = e.pageY
-            setactive([{...app,left:left,top:top},...active])
+        
+        if (active.some(active => active.name === app.name)) {
+            //窗口已打开,
             
-            
+
+            return () => {
+                // console.log("窗口已打开");
+                // console.log({active,app});
+                setactive(active)
+
+            }
+        } else {
+            //窗口未打开,
+            // console.log({active,app});
+            // console.log("窗口未打开");
+            return (e: MouseEvent) => {
+                console.log(e);
+                const left = e.pageX
+                const top = e.pageY
+                setactive([{ ...app, left: left, top: top }, ...active])
+            }
+
+
+
+
         }
-    }, [active, setactive])
+    }
     useEffect(() => {
         const dock: HTMLDivElement = dockref.current
         dock.onmouseenter = (e) => {
@@ -137,7 +152,7 @@ const 程序坞: React.FC<{}> = () => {
 
                     return (
                         <程序
-                            self={[app,index]}
+                            self={[app, index]}
                             mouseleft={mouseleft}
                             key={app.name}
                             click={openApp(app)}
@@ -147,6 +162,7 @@ const 程序坞: React.FC<{}> = () => {
                             time={app.time}
                             date={app.date}
                             name={app.name}
+                            
 
                         />
                     )

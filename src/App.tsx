@@ -8,6 +8,7 @@ import { WebContent } from './components/内容';
 import { 状态栏显示 } from './store';
 import { useActiveWidow } from './hooks/usewindow';
 import { apptype } from './components/程序坞/程序配置';
+import { useState } from 'react';
 export const 备用 = () =>
 (
   <div>
@@ -19,6 +20,7 @@ export const 备用 = () =>
 
 )
 function App() {
+  
   const 状态显示 = useRecoilValue(状态栏显示)
   const [acticeWindow,] = useActiveWidow()
   return (
