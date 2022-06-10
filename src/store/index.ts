@@ -1,5 +1,5 @@
 import { atom,  } from "recoil";
-import { applist, 默认程序, } from "../components/程序坞/程序配置";
+import { applist, 默认程序, } from "../程序配置";
 
 export const 状态栏显示 = atom({
     key:"状态栏显示",

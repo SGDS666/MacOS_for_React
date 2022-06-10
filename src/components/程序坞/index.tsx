@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-pascal-case */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {  useEffect, useMemo, useRef, useState } from 'react';
 import { useRecoilState, } from 'recoil';
 import { useActiveWidow } from '../../hooks/usewindow';
 import { appsState } from '../../store';
 import style from './index.module.scss';
-import { apptype, 默认程序 } from './程序配置';
+import { apptype } from '../../程序配置';
 
 const 程序: React.FC<apptype> = ({ name, icon, date, time, self, click, mouseleft }) => {
     // const [apptop, setapptop] = useState(0)
@@ -48,20 +48,20 @@ const 程序: React.FC<apptype> = ({ name, icon, date, time, self, click, mousel
     useEffect(() => {
         const appdiv: HTMLDivElement = appref.current
         setappcenter(appdiv.offsetLeft + appdiv.offsetWidth / 2)
-        if (self) {
-            const [app, index] = self
-            const divleft = appdiv.offsetLeft
-            const divtop = appdiv.offsetTop
-            // console.dir(appdiv);
+        // if (self) {
+        //     const [app, index] = self
+        //     const divleft = appdiv.offsetLeft
+        //     const divtop = appdiv.offsetTop
+        //     console.dir(appdiv);
 
-            if (!app.left && !app.top) {
-                const newapps = [...apps]
-                newapps[index] = { ...app, left: divleft, top: divtop }
-                setAppState(newapps)
-            }
+        //     if (!app.left && !app.top) {
+        //         const newapps = [...apps]
+        //         newapps[index] = { ...app, left: divleft, top: divtop }
+        //         setAppState(newapps)
+        //     }
 
 
-        }
+        // }
 
         let timeupdate: NodeJS.Timeout
 
@@ -120,9 +120,9 @@ const 程序坞: React.FC<{}> = () => {
             // console.log({active,app});
             // console.log("窗口未打开");
             return (e: MouseEvent) => {
-                console.log(e);
-                const left = e.pageX
-                const top = e.pageY
+                console.log(e,app);
+                const left = e.pageX 
+                const top = e.pageY 
                 setactive([{ ...app, left: left, top: top }, ...active])
             }
 

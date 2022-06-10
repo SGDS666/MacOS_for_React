@@ -1,5 +1,5 @@
 import { SetterOrUpdater, useRecoilState } from "recoil"
-import { applist, apptype } from "../components/程序坞/程序配置"
+import { applist, apptype } from "../程序配置"
 import { 窗口内容 } from "../store"
 
 export const useActiveWidow:()=>[applist, SetterOrUpdater<applist>] = (value:boolean=false) =>{

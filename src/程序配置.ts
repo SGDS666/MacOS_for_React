@@ -1,20 +1,20 @@
-import 启动台icon from '../../image/启动台.png'
-import 访达icon from '../../image/Finder.png'
-import 设置icon from '../../image/系统偏好设置.png'
-import safarlicon from '../../image/safarl.png'
-import AppStoreIcon from '../../image/appstore.png'
-import 地图icon from '../../image/地图icon.png'
-import 活动监视器 from '../../image/活动监视器.png'
-import 终端icon from '../../image/终端.png'
-import 照片icon from '../../image/照片.png'
-import 提醒icon from '../../image/提醒.png'
-import 日历icon from '../../image/日历.png'
-import 时钟icon from '../../image/时钟.png'
-import 废纸篓icon from '../../image/废纸篓空明.png'
-import 微信读书icon from '../../image/微信读书.jpg'
-import 赛车游戏icon from '../../image/赛车游戏.png'
-import psicon from '../../image/PS.jpg'
-import pdficon from '../../image/pdf_logo.png'
+import 启动台icon from './image/启动台.png'
+import 访达icon from './image/Finder.png'
+import 设置icon from './image/系统偏好设置.png'
+import safarlicon from './image/safarl.png'
+import AppStoreIcon from './image/appstore.png'
+import 地图icon from './image/地图icon.png'
+import 活动监视器 from './image/活动监视器.png'
+import 终端icon from './image/终端.png'
+import 照片icon from './image/照片.png'
+import 提醒icon from './image/提醒.png'
+import 日历icon from './image/日历.png'
+import 时钟icon from './image/时钟.png'
+import 废纸篓icon from './image/废纸篓空明.png'
+import 微信读书icon from './image/微信读书.jpg'
+import 赛车游戏icon from './image/赛车游戏.png'
+import psicon from './image/PS.jpg'
+import pdficon from './image/pdf_logo.png'
 export type apptype = {
     name:string,
     icon:string,
@@ -29,6 +29,7 @@ export type apptype = {
     left?:number
     top?:number
     self?:[apptype,number]
+    bottom?:number
 }
 
 export type applist = apptype[]

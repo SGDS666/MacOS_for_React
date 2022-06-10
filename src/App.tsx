@@ -2,13 +2,12 @@
 import { useRecoilValue } from 'recoil';
 import './App.scss';
 import 状态栏 from './components/状态栏';
-import 程序坞 from './components/程序坞';
-import 窗口 from './components/窗口';
-import { WebContent } from './components/内容';
+// import 程序坞 from './components/程序坞';
+import Dock from './components/newdock';
 import { 状态栏显示 } from './store';
-import { useActiveWidow } from './hooks/usewindow';
-import { apptype } from './components/程序坞/程序配置';
-import { useState } from 'react';
+
+
+
 export const 备用 = () =>
 (
   <div>
@@ -22,11 +21,11 @@ export const 备用 = () =>
 function App() {
   
   const 状态显示 = useRecoilValue(状态栏显示)
-  const [acticeWindow,] = useActiveWidow()
+  // const [acticeWindow,] = useActiveWidow()
   return (
     <div className="screen">
       {状态显示 ? <状态栏 /> : null}
-      {
+      {/* {
         acticeWindow.map((w:apptype) => {
           if(w.left&&w.top){
             if(w.type === 'web' && w.src){
@@ -45,7 +44,7 @@ function App() {
           return null
           
         })
-      }
+      } */}
       {/* <窗口>
         <WebContent src='https://ps.gaoding.com/#/' title='ps' />
       </窗口> */}
@@ -62,7 +61,7 @@ function App() {
         <WebContent src='http://hexgl.bkcore.com/play/' title='赛车游戏' />
       </窗口> */}
     
-      <程序坞 />
+      <Dock/>
       
     </div>
   );
