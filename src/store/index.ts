@@ -1,6 +1,7 @@
 import { atom,  } from "recoil";
 import { applist, 默认程序, } from "../程序配置";
 
+//test
 export const 状态栏显示 = atom({
     key:"状态栏显示",
     default:true,

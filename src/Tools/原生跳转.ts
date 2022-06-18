@@ -1,3 +1,6 @@
+const test = () => {
+    return null
+}
 const 原生跳转 = (v: string) => {
     return () => {
         // alert(`跳转到${v}`);
