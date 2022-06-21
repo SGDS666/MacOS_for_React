@@ -1,10 +1,5 @@
 import { atom,  } from "recoil";
 
-//test
-export const 状态栏显示 = atom({
-    key:"状态栏显示",
-    default:true,
-})
 
 export const mouseState = atom<[number,number]>({
     key:"mouseState",
@@ -14,4 +9,14 @@ export const mouseState = atom<[number,number]>({
 export const appwinref = atom<any>({
     key:"appwinref",
     default:null
+})
+
+export const movewinState = atom<{id:string,dx:number,dy:number,wleft:number,wtop:number}>({
+    key:"movewinState",
+    default:{id:"",dx:0,dy:0,wleft:0,wtop:0}
+})
+
+export const  topbarState = atom({
+    key:"topbarState",
+    default:true
 })

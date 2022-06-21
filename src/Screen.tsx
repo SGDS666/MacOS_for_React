@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 
 // import { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState} from 'recoil';
 import './screen.scss';
 import AppWindows from './components/appwindows';
 import DeskTop from './components/desktop';
@@ -10,6 +10,11 @@ import TopBar from './components/topbar';
 import { mouseState } from './store';
 
 
+document.oncontextmenu = () => {
+  
+
+
+}
 
 
 
@@ -19,6 +24,7 @@ function Screen() {
     <div className="screen" onMouseMove={(e) => {
       if (e.clientX !== mouse[0] && e.clientY !== mouse[1]) {
         setMouse([e.clientX, e.clientY])
+        
       }
     }}
       onDrag={(e) => {

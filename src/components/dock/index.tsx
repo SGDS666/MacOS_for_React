@@ -15,7 +15,7 @@ const Dock: React.FC<{}> = () => {
     const 满足进入条件 = (mouse[0] >= docksize[0] && mouse[0] <= docksize[0] + docksize[1] && screenheight - mouse[1] < 80)
     const 进入离开事件 = useCallback(() => {
         if (满足进入条件 && !isInDock) {
-            
+
             setInDock(true)
         }
         if (isInDock && !满足进入条件) {
@@ -32,10 +32,10 @@ const Dock: React.FC<{}> = () => {
     }, [])
     return (
         <div className={style.box} ref={dockref} >
-         
+
             {/* <App iconSrc=''/> */}
             {appconfig.map((app) => {
-                return <App key={app.name+"app"} iconSrc={app.icon} name={app.name} baseleft={docksize[0]}/>
+                return <App key={app.name + "app"} iconSrc={app.icon} name={app.name} baseleft={docksize[0]} />
             })}
         </div>
     )
