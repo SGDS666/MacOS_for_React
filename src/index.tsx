@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import App from './App';
+import Screen from './Screen';
 import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 
@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
 localStorage.removeItem('zindex')
 root.render(
   <RecoilRoot>
-    <App />
+    <Screen />
   </RecoilRoot>
 );
 

@@ -1,7 +1,11 @@
 import React, { ReactNode } from "react"
-
+import setting from '../image/系统偏好设置.png'
+import appstore from '../image/appstore.png'
+import message from '../image/信息.png'
+import  活动监视器 from '../image/活动监视器.png'
 export class AppClass{
-    iconNode:ReactNode
+    icon:string
+    name:string
     winNode:ReactNode
     iconsize:{left:number,top:number,size:number}
     winsize:{
@@ -12,8 +16,9 @@ export class AppClass{
         width:number,
         height:number
     }
-    constructor(icon:ReactNode,win:ReactNode,){
-        this.iconNode = icon
+    constructor(icon:string,name:string,win:ReactNode,){
+        this.icon = icon
+        this.name = name
         this.winNode = win
         this.iconsize = {
             left:0,
@@ -57,8 +62,11 @@ export class AppClass{
     }
 }
 
-const apps = {
-    设置:new AppClass(<div>设置icon</div>,<div>设置win</div>),
-}
+const appconfig = [
+    new AppClass(setting,"设置",<div>设置win</div>),
+    new AppClass(appstore,"App Store",<div>设置win</div>),
+    new AppClass(message,"信息",<div>设置win</div>),
+    new AppClass(活动监视器,"活动监视器",<div>设置win</div>),
+]
 
-export default apps
+export default appconfig

@@ -10,3 +10,8 @@ export const mouseState = atom<[number,number]>({
     key:"mouseState",
     default:[0,0]
 })
+
+export const appwinref = atom<any>({
+    key:"appwinref",
+    default:null
+})

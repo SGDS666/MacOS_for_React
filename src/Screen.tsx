@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-pascal-case */
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import './App.scss';
+import './screen.scss';
 import AppWindows from './components/appwindows';
 import DeskTop from './components/desktop';
 import Dock from './components/dock';
@@ -13,7 +13,7 @@ import { mouseState } from './store';
 
 
 
-function App() {
+function Screen() {
   const [mouse, setMouse] = useRecoilState(mouseState)
   return (
     <div className="screen" onMouseMove={(e) => {
@@ -28,7 +28,7 @@ function App() {
         }
 
       }}>
-      <img src="https://wdppx.gitee.io/favicon.ico" alt="" />
+      {/* <img src="https://wdppx.gitee.io/favicon.ico" alt="" /> */}
       <DeskTop />
       <AppWindows />
       <TopBar />
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default Screen;

@@ -1,0 +1,125 @@
+$tipback:rgba(255, 255, 255, 0.532);
+.box{
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+
+    // padding: 0 10px;
+    &:hover{
+        // .iconbox{
+        //     width: 100%;
+        //     height: 100%;
+        //     img{
+        //         top: -20px;
+        //     }
+        // }
+        .namebox{
+            display: flex;
+            top: -100%;
+            transform: scale(100%);
+        }
+    }
+
+}
+.iconbox{
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+
+    img{
+        width: 120%;
+        height: 120%;
+        position: relative;
+    }
+
+}
+.namebox{
+    display: flex;
+    // display: none;
+    box-sizing: content-box;
+    padding: 0 5px;
+    min-width: 60%;
+    // width: ;
+    height: 25px ;
+    position:absolute;
+    background-color: $tipback;
+    font-size: 15px;
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 5px;
+    top: 0%;
+    white-space: nowrap;
+    transform: scale(0%);
+    transition: all 0.25s ease;
+    box-shadow: 0px 0px 10px 0px rgba($color: #000000, $alpha: .2);
+    // backdrop-filter: blur(100px);
+    &::before{
+        content: '';
+        border: 8px solid transparent;
+        // border-top: 20PX solid rgb(234, 12, 12);
+        border-top:8PX solid $tipback;
+        position: relative;
+        top: 100%;
+        position: absolute;
+        // backdrop-filter: blur(100px);
+    }
+}
+
+.win{
+    flex-shrink: 0;
+    flex-grow: 0;
+    position:absolute;
+    top: 200px;
+    width: 60vw;
+    left: 200px;
+    height: 60vh;
+    background-color: white;
+    box-shadow: 0px 0px 10px 10px rgba($color: #000000, $alpha: .05);
+    border-radius: 10px;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1)
+}
+
+.winctrl{
+    width: 100px;
+    height: 20px;
+    // background-color: red;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 10px;
+    .closd,.min,.max{
+        width: 20px ;
+        height: 20px ;
+        
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: transparent;
+        &:hover{
+            color: rgb(0, 0, 0);
+        }
+    }
+    .closd{
+        background-color: rgb(237, 106, 94);
+    }
+    .min{
+        background-color: rgb(245, 191, 79);
+
+    }
+    .max{
+        background-color: rgb(98, 197, 85);
+    }
+}
