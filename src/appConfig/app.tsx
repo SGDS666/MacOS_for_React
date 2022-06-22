@@ -178,7 +178,7 @@ const App: React.FC<{ iconSrc: string, name: string, baseleft: number ,isinDock:
         gap =Math.abs(mouse[0] - myposition[0]-112) 
         if(gap>=0){
             size = 140 - gap/8
-            top = 90 -gap/8
+            top = 80 -gap/8
         }
         return [gap,size,top]
     },[isinDock, mouse, myposition])
