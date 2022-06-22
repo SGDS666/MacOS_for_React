@@ -3,6 +3,10 @@ import setting from '../image/系统偏好设置.png'
 import appstore from '../image/appstore.png'
 import message from '../image/信息.png'
 import  活动监视器 from '../image/活动监视器.png'
+import Finder  from '../image/Finder.png'
+import 日历  from '../image/日历.png'
+import 时钟  from '../image/时钟.png'
+import 照片  from '../image/照片.png'
 export class AppClass{
     icon:string
     name:string
@@ -63,10 +67,14 @@ export class AppClass{
 }
 
 const appconfig = [
-    new AppClass(setting,"设置",<div>设置win</div>),
+    new AppClass(Finder,"Finder",<div>设置win</div>),
     new AppClass(appstore,"App Store",<div>设置win</div>),
     new AppClass(message,"信息",<div>设置win</div>),
     new AppClass(活动监视器,"活动监视器",<div>设置win</div>),
+    new AppClass(setting,"设置",<div>设置win</div>),
+    new AppClass(时钟,"时钟",<div>设置win</div>),
+    new AppClass(照片,"照片",<div>设置win</div>),
+    new AppClass(日历,"日历",<div>设置win</div>),
 ]
 
 export default appconfig

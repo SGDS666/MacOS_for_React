@@ -22,10 +22,10 @@ function Screen() {
   const [mouse, setMouse] = useRecoilState(mouseState)
   return (
     <div className="screen" onMouseMove={(e) => {
-      if (e.clientX !== mouse[0] && e.clientY !== mouse[1]) {
+      
         setMouse([e.clientX, e.clientY])
         
-      }
+      
     }}
       onDrag={(e) => {
         // console.log(e);

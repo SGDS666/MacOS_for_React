@@ -20,3 +20,8 @@ export const  topbarState = atom({
     key:"topbarState",
     default:true
 })
+
+export const mosueindock = atom({
+    key:"mouseindock",
+    default:false
+})

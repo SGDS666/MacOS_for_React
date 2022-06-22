@@ -1,14 +1,14 @@
 .box{
-    width: 400px;
+    // width: 400px;
+    box-sizing: content-box;
     min-width: 400px;
     height: 60px;
-    background-color: rgba(255, 255, 255, 0.745);
+    background-color: rgba(255, 255, 255, 0.493);
     backdrop-filter: blur(50px);
     position: absolute;
-    left: 0;
-    right: 0;
+    padding: 5px 10px 20px 10px;
     bottom: 10px;
     border-radius: 15px;
-    margin: 0 auto;
     display: flex;
+    
 }
