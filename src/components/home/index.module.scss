@@ -1,0 +1,30 @@
+.box {
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    animation-name: homeboth;
+    animation-duration:.7s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-size: 120%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.8s ease;
+    border-radius: 10px;
+}
+
+@keyframes homeboth {
+    0% {
+        transform: scale(500%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(100%);
+        opacity: 1;
+    }
+
+}

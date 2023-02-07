@@ -1,13 +1,18 @@
 .screen{
     width: 100vw;
-    height: 100vh;
-    border-radius: 1vw;
-    position: relative;
+    height: 100vh;    
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     
-    
-    
-    
+}
+.zz{
+    flex-shrink: 0;
+    width: 30vw;
+    height: 40vh;
+//    position: absolute;
+    // left: 0;
+    // top: 0;
+    background-color: transparent;
 }

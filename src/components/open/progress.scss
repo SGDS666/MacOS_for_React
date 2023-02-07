@@ -1,0 +1,29 @@
+.pbox {
+    flex-shrink: 0;
+    width: 300px;
+    height: 5px;
+    background-color: rgb(107, 106, 106);
+    border-radius: 10px;
+    overflow: hidden;
+
+    .progress {
+        flex-shrink: 0;
+        width: 10%;
+        height: 100%;
+        background-color: white;
+        animation-name: pboth;
+        animation-duration: 4s;
+        animation-fill-mode: both;
+        animation-timing-function: ease-in;
+        // animation-iteration-count: infinite;
+    }
+}
+
+@keyframes pboth {
+    0%{
+        width: 0%;
+    }
+    100%{
+        width: 100%;
+    }
+}

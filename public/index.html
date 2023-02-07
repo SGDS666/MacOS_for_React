@@ -1,41 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>React App</title>
-    <style>
-      *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        user-select: none;
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>张森的Macbook</title>
+  <script>
+    const IEVersion = () => {
+      var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+      var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+      var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+      var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+      if (isIE) {
+        var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+        reIE.test(userAgent);
+        var fIEVersion = parseFloat(RegExp["$1"]);
+        if (fIEVersion === 7) {
+          return 7;
+        } else if (fIEVersion === 8) {
+          return 8;
+        } else if (fIEVersion === 9) {
+          return 9;
+        } else if (fIEVersion === 10) {
+          return 10;
+        } else {
+          return 6;//IE版本<=7
+        }
+      } else if (isEdge) {
+        return 'edge';//edge
+      } else if (isIE11) {
+        return 11; //IE11
+      } else {
+        return -1;//不是ie浏览器
       }
-      #open{
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, .13);
-        position: absolute;
-        top: 0;
-        line-height: 100vh;
-        text-align: center;
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    
-    <div id="root"></div>
-    <div id="open">进入全屏系统</div> -->
-    <script>
-      const root = document.querySelector('#root')
-      const open = document.querySelector('#open')
-      open.onclick = () => {
-        const promise = root.requestFullscreen()
-        
-      } 
-    </script>
-  </body>
+    }
+    if(IEVersion()!==-1){
+      alert("当前浏览器版本太老了吧兄弟 下载最新的chrome浏览器试试 https://www.google.cn/intl/zh-CN/chrome/")
+      document.body = "当前浏览器版本太老了吧兄弟 下载最新的chrome浏览器试试 https://www.google.cn/intl/zh-CN/chrome/"
+      
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    #app {
+      width: 100vw;
+      /* height:  */
+      position: fixed;
+      top: 0;
+      left: 0;
+      max-height: 100vh;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      /* transform-style: preserve-3d; */
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  
+  <div id="root">
+
+  </div>
+  <div id="app">
+
+  </div>
+  <!-- <div id="open">进入全屏系统</div> -->
+  
+</body>
+
 </html>

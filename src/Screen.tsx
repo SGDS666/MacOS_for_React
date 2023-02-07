@@ -1,47 +1,80 @@
 /* eslint-disable react/jsx-pascal-case */
 
 // import { useState } from 'react';
-import { useRecoilState} from 'recoil';
+import { useState, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import Home from './components/home';
+import Menu from './components/home/Menu';
+import Open from './components/open';
+import { Gmouse } from './components/store/mouse';
 import './screen.scss';
-import AppWindows from './components/appwindows';
-import DeskTop from './components/desktop';
-import Dock from './components/dock';
-import TopBar from './components/topbar';
-import { mouseState } from './store';
+import useMove from './utils/addMove';
 
 
-document.oncontextmenu = () => {
-  
 
-
+const Mouse = () => {
+  useMove()
+  return <></>
 }
 
+const Screen = () => {
+  const [open, setOpen] = useState(true)
+  const setGmouse = useSetRecoilState(Gmouse)
+  const [showMenu, setMenu] = useState(false)
+  const [menuPost, setMenuPost] = useState<[number, number]>([0, 0])
 
-
-function Screen() {
-  const [mouse, setMouse] = useRecoilState(mouseState)
   return (
-    <div className="screen" onMouseMove={(e) => {
-      
-        setMouse([e.clientX, e.clientY])
-        
-      
-    }}
-      onDrag={(e) => {
-        // console.log(e);
-        if (e.clientX !== mouse[0] && e.clientY !== mouse[1]) { //减少刷新 只有darg移动时才刷新 (drag事件默认即使鼠标不动也会刷新)
-          setMouse([e.clientX, e.clientY])
-        }
+    <>
+      <div className='screen'
+        onMouseMove={(e) => {
+          setGmouse([e.pageX, e.pageY])
+        }}
 
-      }}>
-      {/* <img src="https://wdppx.gitee.io/favicon.ico" alt="" /> */}
-      <DeskTop />
-      <AppWindows />
-      <TopBar />
+        onContextMenu={e => {
+          e.preventDefault()
+          e.stopPropagation()
+          //@ts-ignore
+          if (e.target.parentElement.className === "screen") {
+            console.log("screen");
+            
+            let x=e.pageX ,y = e.pageY
+            //@ts-ignore
+            if(e.pageX > e.target.offsetWidth - 160){
+                x -=  160
+            }
+            //@ts-ignore
+            if(e.pageY > e.target.offsetHeight - 324){
+              y -=   324
+            }
+            if (showMenu) {
+              setMenuPost([x, y])
+              setMenu(false)
+              setTimeout(() => {
+                setMenu(true)
+              }, 100);
+            } else {
+              setMenuPost([x, y])
+              setMenu(true)
+            }
+          }
 
-      <Dock />
-    </div>
-  );
+
+
+        }}
+        onClick={e => {
+          setMenu(false)
+
+        }}
+      >
+        <Open open={open} setOpen={setOpen} />
+        {!open && <Home />}
+        {!open && showMenu && <Menu pos={menuPost} />}
+        <Mouse />
+      </div>
+
+    </>
+
+  )
 }
 
 export default Screen;

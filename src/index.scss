@@ -7,9 +7,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   perspective: 800px;
-  
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 500px 500px;
+  perspective:800px
+  // test
 }
-
+@font-face {
+  font-family: zcool;
+  src: url("../public/font/zcool.ttf");
+}
+@font-face {
+  font-family: pf;
+  src: url("../public/font/苹方黑体-准-简.ttf");
+}
+@font-face {
+  font-family: pfx;
+  src: url("../public/font/苹方黑体-纤细-简.ttf");
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -21,7 +36,33 @@ code {
   padding: 0;
   // box-sizing: border-box;
   font-weight: bold;
-  transition: all 0.3s ease-out;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   user-select: none;
+  cursor:default;
+  font-family: pf;
   // transform: ;
 }
+/* 滚动条凹槽的颜色，还可以设置边框属性 */
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+/* 滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+/* 滚动条的设置 */
+::-webkit-scrollbar-thumb {
+  background-color:transparent;
+  background-clip: padding-box;
+  min-height: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
+}
+
+input {
+  user-select: text  !important;
+    -webkit-user-select:text !important;
+}
+

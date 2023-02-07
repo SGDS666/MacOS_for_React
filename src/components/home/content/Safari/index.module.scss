@@ -1,0 +1,80 @@
+.title{
+    width: 100%;
+    height: 10px;
+    // background-color: rgba(255, 255, 255, 0.799);
+    
+    top: 0;
+    
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // display: none;
+    // z-index: 1;
+    // backdrop-filter: blur(5px);
+    &:hover{
+        backdrop-filter: blur(10px);
+        height: 50px;
+        .center{
+            width: 40%;
+            input{
+                color: rgb(118, 117, 117);
+                background-color: #efeded;
+            }
+        }
+    }
+    .center{
+        width: 10%;
+        height: 55%;
+        input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #d8d8d82d;
+            border-radius: 4px;
+            color: transparent;
+            font-size: 15px;
+            letter-spacing: 0;
+            padding-left: 20px;
+            font-weight: 400;
+            text-align: center;
+            transition: all 0.3s;
+        
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            &:focus{
+                text-align: start;
+                background-color: #fafafa;
+                outline: 4px solid rgb(123, 175, 255);
+                color: rgb(0, 0, 0);
+            }
+
+        }
+    }
+}
+.box{
+    width: 100%;
+    height: 100%;
+    background-image: url("https://img.dpm.org.cn/Uploads/Picture/2021/11/29/s61a43abbe4317.jpg");
+    position: absolute;
+    top: 0px;
+    .body{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        // top: 50px;
+        
+        link{
+            width: 100%;
+            height: 100%;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+            // opacity: 0.8;
+            border: none;
+            // overflow: hidden;
+            
+        }
+    }
+    
+}

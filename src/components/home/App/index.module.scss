@@ -1,0 +1,94 @@
+.box {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    // background-color: rgb(75, 75, 75);
+
+    border-radius: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position: 50% 50%;
+
+    .tip ,.tip2 {
+        box-sizing: content-box;
+        min-width: 50%;
+        height: 35%;
+        background-color: rgba(255, 255, 255, 0.687);
+        backdrop-filter: blur(20px);
+        color: black;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 120%;
+        border-radius: 6px;
+        display: none;
+        white-space: nowrap;
+        padding: 0 5px;
+
+        &::after {
+            content: "";
+            width: 0px;
+            height: 0px;
+            border: 5px transparent solid;
+            border-top: 5px rgba(255, 255, 255, 0.687) solid;
+            position: absolute;
+            top: 100%;
+
+        }
+
+    }
+    .tip2{
+        min-width: 120px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 50px;
+        left: 10%;
+        padding: 10px 5px;
+        backdrop-filter: blur(10px) contrast(200%);
+        -webkit-backdrop-filter: contrast(200%);
+        &::after {
+            left: 10%;
+
+        }
+        // top: -120px;
+        div{
+            width: 100%;
+            padding-left: 10px;
+            height: 22px;
+            color: rgb(39, 38, 38);
+            // text-align: center;
+            line-height: 22px;
+            border-radius: 5px;
+            margin-bottom: 2px;
+            &:hover{
+                background-color: rgba(0, 85, 255, 0.858);
+                color:white;
+            }
+
+        }
+    }
+    &:hover .tip {
+        display: flex;
+    }
+    
+    &:active {
+        box-shadow: inset 0px 0px 10px 50px rgba(0, 0, 0, 0.606);
+    }
+
+}
+
+.content {
+    min-width: 50vw;
+    min-height: 50vh;
+    background-color: white;
+    position: absolute;
+
+}
